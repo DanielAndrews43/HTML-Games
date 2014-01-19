@@ -1,0 +1,15 @@
+div{
+    display: inline-block;
+}
+body{
+    background-color: black;
+}
+h1{
+    margin: 0 auto;
+    color: cyan;
+    display: inline-block;
+}
+.game{
+    margin: auto;
+    text-align: center;
+}
