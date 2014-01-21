@@ -8,6 +8,7 @@ function preload() {
     game.load.image('logo', 'bin/logo.png');
     game.load.image('paddle', 'bin/paddle.png');
     game.load.image('ball', 'bin/ball.png');
+    game.load.image('endGameButton', 'bin/endGameButton.png');
 	
 }
  
@@ -28,17 +29,35 @@ var logo,
     
     startGameText,
     endGameText,
+    endGameButton,
     
     startGame,
     gameRunning = true,
     currFrame = 0,
     paddles;
 
+function endGameHandler() {
+    "use strict";
+    
+    p1Score = 0;
+    p2Score = 0;
+    gameRunning = true;
+    endGameText.visible = false;
+    endGameButton.visible = false;
+    
+    newBall();
+    
+}
+
 function create() {
  
     "use strict";
     
     game.stage.backgroundColor = '#63d1f1';
+    
+    endGameButton = game.add.button(game.world.centerX, game.world.centerY, 'endGameButton', endGameHandler);
+    endGameButton.anchor.setTo(0.5, 0.5);
+    endGameButton.visible = false;
     
     p1ScoreText = game.add.text(75, game.height - 40, 'Score: 0', { font: "30px Arial", fill: "#ffffff" });
     p1ScoreText.anchor.setTo(0.5, 0.5);
@@ -85,15 +104,20 @@ function gameOver(side) {
     
     "use strict";
     
-    if (side === 1) {
-        endGameText.content = "You Lose!!";
-    } else {
-        endGameText.content = "You Win!";
-    }
-    
     gameRunning = false;
     startGameText.visible = false;
+    endGameButton.visible = true;
     endGameText.visible = true;
+    
+    if (side === 1) {
+        endGameText.content = "     You Lose!\nClick To Restart";
+    } else {
+        endGameText.content = "     You Win!\nClick To Restart";
+    }
+    
+    p1Score = 0;
+    p2Score = 0;
+    
 }
 
 function getVelocity() {
