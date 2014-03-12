@@ -40,7 +40,9 @@ function endGameHandler() {
     "use strict";
     
     p1Score = 0;
+    p1ScoreText.content = 'Score: ' + p1Score;
     p2Score = 0;
+    p2ScoreText.content = 'Score: ' + p2Score;
     gameRunning = true;
     endGameText.visible = false;
     endGameButton.visible = false;
@@ -59,9 +61,9 @@ function create() {
     endGameButton.anchor.setTo(0.5, 0.5);
     endGameButton.visible = false;
     
-    p1ScoreText = game.add.text(75, game.height - 40, 'Score: 0', { font: "30px Arial", fill: "#ffffff" });
+    p1ScoreText = game.add.text(75, game.height - 40, 'Score: ' + p1Score, { font: "30px Arial", fill: "#ffffff" });
     p1ScoreText.anchor.setTo(0.5, 0.5);
-    p2ScoreText = game.add.text(game.width - 75, game.height - 40, 'Score: 0', { font: "30px Arial", fill: '#FFFFFF' });
+    p2ScoreText = game.add.text(game.width - 75, game.height - 40, 'Score: ' + p2Score, { font: "30px Arial", fill: '#FFFFFF' });
     p2ScoreText.anchor.setTo(0.5, 0.5);
     startGameText = game.add.text(game.world.centerX, game.world.centerY, 'PRESS SPACE TO START', { font: "30px Arial", fill: "#FFFFFF" });
     startGameText.anchor.setTo(0.5, 0.5);
@@ -114,9 +116,6 @@ function gameOver(side) {
     } else {
         endGameText.content = "     You Win!\nClick To Restart";
     }
-    
-    p1Score = 0;
-    p2Score = 0;
     
 }
 
